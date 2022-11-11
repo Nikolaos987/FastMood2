@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.RegistrationController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="fullName" layoutX="225.0" layoutY="14.0" promptText="full name..." />
+            <TextField fx:id="phoneNumber" layoutX="225.0" layoutY="59.0" promptText="phone number..." />
+            <TextField fx:id="email" layoutX="225.0" layoutY="103.0" promptText="email..." />
+            <TextField fx:id="username" layoutX="225.0" layoutY="154.0" promptText="username..." />
+            <PasswordField fx:id="password" layoutX="225.0" layoutY="200.0" promptText="password..." />
+            <ToggleButton fx:id="toggleButton" layoutX="256.0" layoutY="236.0" mnemonicParsing="false" onAction="#activateAdminKey" text="ToggleButton" />
+            <PasswordField fx:id="adminKey" layoutX="225.0" layoutY="291.0" promptText="admin key..." />
+            <Button fx:id="registerButton" layoutX="130.0" layoutY="339.0" mnemonicParsing="false" onAction="#registerUser" text="register" />
+            <Button fx:id="backButton" layoutX="445.0" layoutY="339.0" mnemonicParsing="false" onAction="#helloScene" text="back" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
