@@ -13,10 +13,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class RegistrationController {
 
@@ -44,15 +41,17 @@ public class RegistrationController {
     private Scene scene;
     private Parent root;
 
+    public final String key = "admin";
+
     int idCounter = 100;
+
 
     public void activateAdminKey(ActionEvent event) throws IOException {
 
     }
 
     public void registerUser(ActionEvent event) throws IOException {
-
-        int id = idCounter + 1;
+        int id = idCounter + 10;
         String name = username.getText();
         String phone = phoneNumber.getText();
         String mail = email.getText();
@@ -60,18 +59,39 @@ public class RegistrationController {
         String pass = password.getText();
 
 
-        String sql = "insert into customers values("+ id +",'"+ name +"','"+ phone +"','"+ mail +"','"+ user +"','"+ pass +"')";
+//        String sql = "insert into customers values("+ id +",'"+ name +"','"+ phone +"','"+ mail +"','"+ user +"','"+ pass +"')";
         Connection connection = null;
-        Statement statement = null;
+        //CallableStatement stmt = null;
+
+        // new2
+        String call = "{call REGISTERUSER(?,?,?,?,?)}";
+
         try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185276", " ");
-            statement = connection.createStatement();
-            boolean result = statement.execute(sql);
-            System.out.println("inserted "+ result);
-            idCounter += 1;
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+            //stmt = connection.createStatement();
+//            boolean result = statement.execute(sql);
+//            System.out.println("inserted "+ result);
+//            idCounter += 1;
+
+//  new          statement.executeUpdate("INSERT INTO Customers(CID, FULLNAME, PHONE, EMAIL, USERNAME, PASSWORD) VALUES ('5', 'FN', 'PH', 'E', 'USR', 'PSWD')");
+
+
+// new2            statement.executeQuery("REGISTERUSER("+ id +",'"+ name +"','"+ phone +"','"+ mail +"','"+ user +"','"+ pass +"')");
+
+
+            try (CallableStatement stmt = connection.prepareCall(call)) {
+                //stmt.setInt(1, id);
+                stmt.setString(1, name);
+                stmt.setString(2, phone);
+                stmt.setString(3, mail);
+                stmt.setString(4, user);
+                stmt.setString(5, pass);
+                stmt.execute();
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        } /*finally {
             try {
                 if (statement != null)
                     statement.close();
@@ -80,7 +100,9 @@ public class RegistrationController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+
+
     }
 
     public void helloScene(ActionEvent event) throws IOException {

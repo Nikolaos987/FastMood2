@@ -37,20 +37,37 @@ public class MenuController {
     private Button backButton;
     public String name;
     public void showMenu(ActionEvent event) throws IOException {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185276", "");
-            // CallableStatement cs = conn.prepareCall("{call show_menu()}");
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT FULLNAME FROM CUSTOMERS WHERE CID = 1";
-            ResultSet rs = stmt.executeQuery(sql);
+//        try {
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185276", "Soul2310");
+//            // CallableStatement cs = conn.prepareCall("{call show_menu()}");
+//            Statement stmt = conn.createStatement();
+//            String sql = "SELECT FULLNAME FROM CUSTOMERS WHERE CID = 1";
+//            ResultSet rs = stmt.executeQuery(sql);
+//
+//            name = rs.getString("FULLNAME");
+//            System.out.println(rs);
+//        }catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        text.setText(name);
 
-            name = rs.getString("FULLNAME");
-            System.out.println(rs);
+        try {
+            System.out.println("Trying to connect to database...");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+            System.out.println("Connected to database");
+
+            String sql = "SELECT FULLNAME FROM CUSTOMERS WHERE CID = 1";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                //text.setText();
+                String name = rs.getString("FULLNAME");
+                System.out.println(name);
+            }
         }catch (Exception e) {
             System.out.println(e);
         }
-        text.setText(name);
     }
 
     public void mainScene(ActionEvent event) throws IOException {

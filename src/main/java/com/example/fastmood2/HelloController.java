@@ -45,6 +45,8 @@ public class HelloController {
     private Scene scene;
     private Parent root;
 
+    public final String adminKey = "admin";
+
     boolean flag = false;
 
     public void userLogin(ActionEvent event) throws IOException {
@@ -70,7 +72,7 @@ public class HelloController {
 
         try {
             System.out.println("Trying to connect to database...");
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185276", " ");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             System.out.println("Connected to database");
             String sql = "select * from customers where username='" + username.getText() +"' and password='" + password.getText() +"'";
             PreparedStatement ps = conn.prepareStatement(sql);
