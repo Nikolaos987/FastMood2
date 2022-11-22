@@ -47,11 +47,11 @@ public class HelloController {
 
     public final String adminKey = "admin";
 
-    boolean flag = false;
+    public boolean staffFlag = false;
 
     public void userLogin(ActionEvent event) throws IOException {
         checkLogin();
-        if (flag) {
+        if (staffFlag) {
             Parent root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -75,14 +75,19 @@ public class HelloController {
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             System.out.println("Connected to database");
             String sql = "select * from customers where username='" + username.getText() +"' and password='" + password.getText() +"'";
+            String sqlStaff = "select * from staff where username='" + username.getText() +"' and password='" + password.getText() +"'";
             PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement psStaff = conn.prepareStatement(sqlStaff);
             ResultSet rs = ps.executeQuery();
+            ResultSet rsStaff= psStaff.executeQuery();
             if (rs.next()) {
                 warning.setText("Success!");
-                flag = true;
-            }else {
+                staffFlag = true;
+            }else if (rsStaff.next()){
+                warning.setText("Success!");
+                staffFlag = true;
+            }else
                 warning.setText("wrong username or password!");
-            }
         }catch (Exception e) {
             System.out.println(e);
         }

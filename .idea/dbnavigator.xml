@@ -32,7 +32,7 @@
       <console name="DBtechnologies" type="STANDARD" schema="IT185276" session="Main"><![CDATA[select * from CUSTOMERS]]></console>
     </connection>
     <connection id="ace8c209-00c4-4ac9-aa89-9a0b150b40c9">
-      <console name="DBtechnologies2" type="STANDARD" schema="IT185351" session="Main"><![CDATA[select * from Customers]]></console>
+      <console name="DBtechnologies2" type="STANDARD" schema="IT185351" session="Pool"><![CDATA[select * from STAFF]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -45,6 +45,12 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="a2225ad6-a4f2-419b-8925-b05aaf02c74d" dataset="IT185276.CUSTOMERS" active-filter-id="" />
     <filter-actions connection-id="a2225ad6-a4f2-419b-8925-b05aaf02c74d" dataset="IT185276.ORDERS" active-filter-id="" />
+    <filter-actions connection-id="ace8c209-00c4-4ac9-aa89-9a0b150b40c9" dataset="IT185351.STAFF" active-filter-id="" />
+    <filter-actions connection-id="ace8c209-00c4-4ac9-aa89-9a0b150b40c9" dataset="IT185351.CUSTOMERS" active-filter-id="47e34ff5-db25-46a8-824f-684507da0b5e">
+      <filter id="47e34ff5-db25-46a8-824f-684507da0b5e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="CID" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

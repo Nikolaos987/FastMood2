@@ -42,6 +42,7 @@ public class RegistrationController {
     private Parent root;
 
     public final String key = "admin";
+    public boolean admin = false;
 
     int idCounter = 100;
 
@@ -57,6 +58,10 @@ public class RegistrationController {
         String mail = email.getText();
         String user = username.getText();
         String pass = password.getText();
+        String keyTextField = adminKey.getText();
+
+        if (keyTextField=="admin")
+            admin = true;
 
 
 //        String sql = "insert into customers values("+ id +",'"+ name +"','"+ phone +"','"+ mail +"','"+ user +"','"+ pass +"')";
@@ -65,7 +70,7 @@ public class RegistrationController {
 
         // new2
         String call = "{call REGISTERUSER(?,?,?,?,?)}";
-
+        String callAdmin = "{call REGISTERADMIN(?,?,?,?,?)}";
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             //stmt = connection.createStatement();
@@ -78,15 +83,28 @@ public class RegistrationController {
 
 // new2            statement.executeQuery("REGISTERUSER("+ id +",'"+ name +"','"+ phone +"','"+ mail +"','"+ user +"','"+ pass +"')");
 
-
-            try (CallableStatement stmt = connection.prepareCall(call)) {
-                //stmt.setInt(1, id);
-                stmt.setString(1, name);
-                stmt.setString(2, phone);
-                stmt.setString(3, mail);
-                stmt.setString(4, user);
-                stmt.setString(5, pass);
-                stmt.execute();
+            if (admin) {
+                try (CallableStatement stmt = connection.prepareCall(call)) {
+                    //stmt.setInt(1, id);
+                    stmt.setString(1, name);
+                    stmt.setString(2, phone);
+                    stmt.setString(3, mail);
+                    stmt.setString(4, user);
+                    stmt.setString(5, pass);
+                    stmt.execute();
+                    System.out.println("CUSTOMER: Row Inserted!");
+                }
+            } else {
+                try (CallableStatement stmt = connection.prepareCall(callAdmin)) {
+                    stmt.setInt(1, id);
+                    stmt.setString(2, name);
+                    stmt.setString(3, phone);
+                    //stmt.setString(3, mail);
+                    stmt.setString(4, user);
+                    stmt.setString(5, pass);
+                    stmt.execute();
+                    System.out.println("STAFF: Row Inserted!");
+                }
             }
 
         } catch (SQLException e) {
