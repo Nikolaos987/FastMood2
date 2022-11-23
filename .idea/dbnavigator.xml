@@ -32,7 +32,7 @@
       <console name="DBtechnologies" type="STANDARD" schema="IT185276" session="Main"><![CDATA[select * from CUSTOMERS]]></console>
     </connection>
     <connection id="ace8c209-00c4-4ac9-aa89-9a0b150b40c9">
-      <console name="DBtechnologies2" type="STANDARD" schema="IT185351" session="Pool"><![CDATA[select * from STAFF]]></console>
+      <console name="DBtechnologies2" type="STANDARD" schema="IT185351" session="Pool"><![CDATA[select * from CUSTOMERS]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
