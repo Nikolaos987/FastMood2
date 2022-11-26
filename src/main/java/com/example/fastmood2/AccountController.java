@@ -74,10 +74,13 @@ public class AccountController {
             String call = "{CALL EDITUSER(?,?)}";
 
             try (CallableStatement stmt = connection.prepareCall(call)) {
-                stmt.setString(1, User.getFullname());
-                stmt.setInt(2, User.getID());
-                stmt.execute();
-                System.out.println("\nCUSTOMER: fullname changed!");
+                System.out.println("Fullname: "+ User.getFullname());
+                System.out.println("CID: "+ User.getID());
+
+//                stmt.setString(1, User.getFullname());
+//                stmt.setInt(2, User.getID());
+//                stmt.execute();
+//                System.out.println("\nCUSTOMER: fullname changed!");
             }
 
         }catch (SQLException e) {
