@@ -71,13 +71,13 @@ public class AccountController {
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             System.out.println("Connected to database");
 
-            String call = "{EDITUSER (?,?)}";
+            String call = "{CALL EDITUSER(?,?)}";
 
             try (CallableStatement stmt = connection.prepareCall(call)) {
                 stmt.setString(1, User.getFullname());
                 stmt.setInt(2, User.getID());
                 stmt.execute();
-                System.out.println("CUSTOMER: fullname changed!");
+                System.out.println("\nCUSTOMER: fullname changed!");
             }
 
         }catch (SQLException e) {
