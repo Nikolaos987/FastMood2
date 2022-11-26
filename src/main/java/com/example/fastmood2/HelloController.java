@@ -75,15 +75,24 @@ public class HelloController {
             System.out.println("Trying to connect to database...");
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             System.out.println("Connected to database");
+
             String sql = "select * from customers where username='" + username.getText() +"' and password='" + password.getText() +"'";
+            String sqlID = "select CID from Customers c where c.username = 'andreas'";
             String sqlStaff = "select * from staff where username='" + username.getText() +"' and password='" + password.getText() +"'";
+
             PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement psID = conn.prepareStatement(sqlID);
             PreparedStatement psStaff = conn.prepareStatement(sqlStaff);
+
             ResultSet rs = ps.executeQuery();
-            ResultSet rsStaff= psStaff.executeQuery();
+            ResultSet rsID = psID.executeQuery();
+            ResultSet rsStaff = psStaff.executeQuery();
+
             if (rs.next()) {
                 warning.setText("Success!");
-                staffFlag = true;
+                staffFlag = false;  //itan true prin (last modified: 26/11/ 9:10 pm)
+                User user1 = new User(rs.getInt("CID"));
+//                (rsID.getInt("CID"));
             }else if (rsStaff.next()){
                 warning.setText("Success!");
                 staffFlag = true;
