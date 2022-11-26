@@ -73,7 +73,7 @@ public class RegistrationController {
         //CallableStatement stmt = null;
 
         // new2
-        String call = "{call REGISTERCUSTOMER(?,?,?,?,?,?)}";
+        String call = "{call REGISTERCUSTOMER(?,?,?,?,?)}";
         String callAdmin = "{call REGISTERADMIN(?,?,?,?,?)}";
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
@@ -89,21 +89,21 @@ public class RegistrationController {
 
             if (admin==false) {
                 try (CallableStatement stmt = connection.prepareCall(call)) {
-                    stmt.setInt(1, id);
-                    stmt.setString(2, name);
-                    stmt.setString(3, phone);
-                    stmt.setString(4, mail);
-                    stmt.setString(5, user);
-                    stmt.setString(6, pass);
+//                    stmt.setInt(1, id);
+                    stmt.setString(1, name);
+                    stmt.setString(2, phone);
+                    stmt.setString(3, mail);
+                    stmt.setString(4, user);
+                    stmt.setString(5, pass);
                     stmt.execute();
                     System.out.println("CUSTOMER: Row Inserted!");
                 }
             } else if (admin) {
                 try (CallableStatement stmt = connection.prepareCall(callAdmin)) {
-                    stmt.setInt(1, id);
-                    stmt.setString(2, name);
-                    stmt.setString(3, phone);
-                    //stmt.setString(3, mail);
+//                    stmt.setInt(1, id);
+                    stmt.setString(1, name);
+                    stmt.setString(2, phone);
+                    stmt.setString(3, mail);
                     stmt.setString(4, user);
                     stmt.setString(5, pass);
                     stmt.execute();

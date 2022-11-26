@@ -30,7 +30,6 @@
             </ImageView>
             <TextField fx:id="username" layoutX="26.0" layoutY="151.0" promptText="Username" />
             <PasswordField fx:id="password" layoutX="27.0" layoutY="200.0" promptText="Password" />
-            <PasswordField fx:id="key" layoutX="28.0" layoutY="247.0" promptText="Administrative Key" />
             <Button fx:id="loginButton" layoutX="28.0" layoutY="330.0" mnemonicParsing="false" onAction="#userLogin" text="Login" />
             <Button fx:id="signupButton" layoutX="119.0" layoutY="330.0" mnemonicParsing="false" onAction="#signUpUser" text="Sign Up" />
             <Label fx:id="warning" layoutY="296.0" prefHeight="18.0" prefWidth="198.0" textFill="RED" />

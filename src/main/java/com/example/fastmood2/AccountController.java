@@ -13,10 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class AccountController {
     @FXML
@@ -69,13 +66,28 @@ public class AccountController {
 
 
     public void SaveFullnameButton_Pressed() throws IOException {
-        String x = fullname.getText();
-        fullnameLabel.setText(Integer.toString(User.getID()));
+        try {
+            System.out.println("Trying to connect to database...");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+            System.out.println("Connected to database");
+
+            String call = "{EDITUSER (?,?)}";
+
+            try (CallableStatement stmt = connection.prepareCall(call)) {
+                stmt.setString(1, User.getFullname());
+                stmt.setInt(2, User.getID());
+                stmt.execute();
+                System.out.println("CUSTOMER: fullname changed!");
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void savePhoneButton_Pressed(ActionEvent event) {
         String x = phone.getText();
-        phoneLabel.setText(x);
+        phoneLabel.setText(Integer.toString(User.getID()));
     }
 
     public void saveEmailButton_Pressed(ActionEvent event) {

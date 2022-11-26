@@ -47,12 +47,12 @@ public class HelloController {
     private Parent root;
 
     public final String adminKey = "admin";
-
+    public boolean found = false;
     public boolean staffFlag = false;
 
     public void userLogin(ActionEvent event) throws IOException {
         checkLogin();
-        if (staffFlag) {
+        if (found) {
             Parent root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -90,11 +90,13 @@ public class HelloController {
 
             if (rs.next()) {
                 warning.setText("Success!");
+                found = true;
                 staffFlag = false;  //itan true prin (last modified: 26/11/ 9:10 pm)
-                User user1 = new User(rs.getInt("CID"));
+                User user1 = new User(rs.getInt("CID"), staffFlag, rs.getString("FULLNAME"));
 //                (rsID.getInt("CID"));
             }else if (rsStaff.next()){
                 warning.setText("Success!");
+                found = true;
                 staffFlag = true;
             }else
                 warning.setText("wrong username or password!");
