@@ -71,6 +71,7 @@ public class AccountController {
             Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             System.out.println("Connected to database");
 
+
             String call = "{CALL EDITUSER(?,?)}";
 
             try (CallableStatement stmt = connection.prepareCall(call)) {
