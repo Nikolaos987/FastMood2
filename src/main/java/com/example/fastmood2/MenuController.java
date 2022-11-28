@@ -63,6 +63,7 @@ public class MenuController {
             if (rs.next()) {
                 //text.setText();
                 String name = rs.getString("FULLNAME");
+                text.setText(name);
                 System.out.println(name);
             }
         }catch (Exception e) {

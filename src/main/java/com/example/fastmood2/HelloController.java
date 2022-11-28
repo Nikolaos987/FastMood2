@@ -92,12 +92,13 @@ public class HelloController {
                 warning.setText("Success!");
                 found = true;
                 staffFlag = false;  //itan true prin (last modified: 26/11/ 9:10 pm)
-                User user1 = new User(rs.getInt("CID"), staffFlag, rs.getString("FULLNAME"));
+                User user1 = new User(staffFlag, rs.getInt("CID"), rs.getString("FULLNAME"), rs.getString("PHONE"), rs.getString("EMAIL"), rs.getString("USERNAME"));
 //                (rsID.getInt("CID"));
             }else if (rsStaff.next()){
                 warning.setText("Success!");
                 found = true;
                 staffFlag = true;
+                User userStaff = new User(staffFlag, rsStaff.getInt("SID"), rsStaff.getString("FULLNAME"), rsStaff.getString("PHONE"), rsStaff.getString("EMAIL"), rsStaff.getString("USERNAME"));
             }else
                 warning.setText("wrong username or password!");
         }catch (Exception e) {
