@@ -7,9 +7,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.nimbus.State;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.io.IOException;
+import java.sql.*;
+import java.util.Arrays;
 
 public class MainController {
     @FXML
@@ -24,6 +30,23 @@ public class MainController {
     private Button adminButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button logfileButton;
+//    @FXML
+//    private TableView<LogData> table1;
+//    @FXML
+//    private TableColumn<LogData> colStaffID;
+//    @FXML
+//    private TableColumn colCustomerID;
+//    @FXML
+//    private TableColumn colFullName;
+//    @FXML
+//    private TableColumn colAction;
+//    @FXML
+//    private TableColumn colMoment;
+//    @FXML
+//    private TableColumn colTableName;
+
 
     private Stage stage;
     private Scene scene;
@@ -47,6 +70,42 @@ public class MainController {
 
     public void logout(ActionEvent event) throws IOException {
         changeTheScene(event, "hello-view.fxml");
+    }
+
+//    public void logfile(ActionEvent event) throws IOException {
+//        changeTheScene(event, "logfileScene.fxml");
+//    }
+
+    public void logfileButtonPressed(ActionEvent event) throws IOException {
+//        if (User.getIsStaff()) {
+//            LogData lc;
+//            try {
+//                //Class.forName("Oracle.jdbc.driver.OracleDriver");
+//                Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+//                Statement stmt = connection.createStatement();
+//                ResultSet rs = stmt.executeQuery("select * from LOGFILE");
+//                while (rs.next()) {
+//                    String c_id = String.valueOf(rs.getInt("CUSTOMERID"));
+//                    String fullname = rs.getString("FULLNAME");
+//                    String tablename = rs.getString("tablename");
+//                    String action = rs.getString("action");
+//                    String moment = rs.getString("moment");
+//                    String staffid = String.valueOf(rs.getInt("staffid"));
+//                    System.out.println(c_id + "\t\t" + staffid +"\t\t" + fullname + "\t\t\t\t" + tablename + "\t\t\t\t" + action + "\t\t\t\t" + moment);
+//
+//                    lc = new LogData(staffid, c_id, fullname, action, moment, tablename);
+//                    //String tbData[] = {c_id, fullname, tablename, action, moment, staffid};
+//                    //DefaultTableModel tblModel = (DefaultTableModel) table1.getModel();
+//                    //Arrays.stream(tbData).toArray();
+//                }
+        changeTheScene(event, "logfileScene.fxml");
+//                connection.close();
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }/* catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }*/
+//        }
     }
 
     public void changeTheScene(ActionEvent event, String fxml) throws IOException {

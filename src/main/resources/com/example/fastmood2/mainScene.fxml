@@ -31,6 +31,7 @@
             <Label layoutX="25.0" layoutY="254.0" text="phone number: 1234567890" />
             <Label layoutX="25.0" layoutY="291.0" text="email: fastmood@hotmail.com" />
             <Button fx:id="logoutButton" layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" text="log out" />
+            <Button fx:id="logfileButton" layoutX="195.0" layoutY="338.0" mnemonicParsing="false" onAction="#logfileButtonPressed" prefHeight="47.0" prefWidth="61.0" text="logfile" />
          </children></AnchorPane>
    </right>
 </BorderPane>
