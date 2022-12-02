@@ -23,14 +23,16 @@ import java.util.ResourceBundle;
 public class MakeReservationsController implements Initializable {
     @FXML
     private TableView<FindReservationByDate> reservationsTable;
-    @FXML
-    private TableColumn<FindReservationByDate, Integer> reservationID;
+//    @FXML
+//    private TableColumn<FindReservationByDate, Integer> reservationID;
     @FXML
     private TableColumn<FindReservationByDate, String> date;
     @FXML
     private TableColumn<FindReservationByDate, Integer> tableID;
     @FXML
-    private TableColumn<FindReservationByDate, Integer> customerID;
+    private TableColumn<FindReservationByDate, String> customer;
+    @FXML
+    private TableColumn<FindReservationByDate, String> phone;
 
     @FXML
     private Button backButton;
@@ -60,6 +62,8 @@ public class MakeReservationsController implements Initializable {
     int r_id;
     String day;
     int t_id;
+    String c_name;
+    String c_phone;
     int c_id;
 
     public void findReservations(ActionEvent event) throws IOException {
@@ -76,6 +80,8 @@ public class MakeReservationsController implements Initializable {
             //reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
             date.setCellValueFactory(new PropertyValueFactory<>("Day"));
             tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+            customer.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
             //customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
 
             try {
@@ -94,16 +100,19 @@ public class MakeReservationsController implements Initializable {
 //                        System.out.println(rs.getInt(1));
 //                        r_id = rs.getInt(1);
 
-                        System.out.println(rs.getString(2));
-                        day = rs.getString(2);
+                        System.out.println(rs.getString(1));
+                        day = rs.getString(1);
 
-                        System.out.println(rs.getInt(3));
-                        t_id = rs.getInt(3);
+                        System.out.println(rs.getInt(2));
+                        t_id = rs.getInt(2);
 
-//                        System.out.println(rs.getInt(4));
-//                        c_id = rs.getInt(4);
+                        System.out.println(rs.getString(3));
+                        c_name = rs.getString(3);
 
-                        findReservationByDate = new FindReservationByDate(day, t_id);
+                        System.out.println(rs.getString(4));
+                        c_phone = rs.getString(4);
+
+                        findReservationByDate = new FindReservationByDate(day, t_id, c_name, c_phone);
                         reservationsTable.getItems().add(findReservationByDate);
                     }
                 } catch (SQLException e) {
@@ -143,6 +152,10 @@ public class MakeReservationsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (User.getIsStaff()) {
+            reservationButton.setDisable(true);
+        }
+
         FindReservationByDate findReservationByDate;
 
         reservationsTable.getItems().clear(); // clear all the table rows
@@ -152,6 +165,8 @@ public class MakeReservationsController implements Initializable {
 //            reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
             date.setCellValueFactory(new PropertyValueFactory<>("Day"));
             tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+            customer.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 //            customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
 
             try {
@@ -172,7 +187,13 @@ public class MakeReservationsController implements Initializable {
                         System.out.println(rs.getInt(2));
                         t_id = rs.getInt(2);
 
-                        findReservationByDate = new FindReservationByDate(day, t_id);
+                        System.out.println(rs.getString(3));
+                        c_name = rs.getString(3);
+
+                        System.out.println(rs.getString(4));
+                        c_phone = rs.getString(4);
+
+                        findReservationByDate = new FindReservationByDate(day, t_id, c_name, c_phone);
                         reservationsTable.getItems().add(findReservationByDate);
                     }
                 } catch (SQLException e) {

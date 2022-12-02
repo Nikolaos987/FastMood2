@@ -17,6 +17,8 @@
               <columns>
                 <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="tableID" prefWidth="75.0" text="Table Number" />
+                  <TableColumn fx:id="customer" prefWidth="75.0" text="Customer" />
+                  <TableColumn fx:id="phone" prefWidth="75.0" text="Phone" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
