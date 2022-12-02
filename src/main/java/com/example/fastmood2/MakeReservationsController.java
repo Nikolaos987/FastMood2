@@ -128,8 +128,8 @@ public class MakeReservationsController implements Initializable {
                 System.out.println("Connected to database");
 
                 try (CallableStatement stmt = connection.prepareCall(callMakeReservations)) {
-                    stmt.setDate(1, Date.valueOf("2022-04-04"));
-                    stmt.setInt(2, 1);
+                    stmt.setDate(1, Date.valueOf(placeDate));
+                    stmt.setInt(2, t_id);
                     stmt.setInt(3, User.getID());
                     stmt.executeQuery();
 
