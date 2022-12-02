@@ -73,10 +73,10 @@ public class MakeReservationsController implements Initializable {
 
             Connection connection = null;
 
-            reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
+            //reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
             date.setCellValueFactory(new PropertyValueFactory<>("Day"));
             tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
-            customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
+            //customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
 
             try {
                 System.out.println("Trying to connect to database...");
@@ -91,8 +91,8 @@ public class MakeReservationsController implements Initializable {
                     ResultSet rs = (ResultSet) stmt.getObject(2);
 
                     while (rs.next()) {
-                        System.out.println(rs.getInt(1));
-                        r_id = rs.getInt(1);
+//                        System.out.println(rs.getInt(1));
+//                        r_id = rs.getInt(1);
 
                         System.out.println(rs.getString(2));
                         day = rs.getString(2);
@@ -100,8 +100,8 @@ public class MakeReservationsController implements Initializable {
                         System.out.println(rs.getInt(3));
                         t_id = rs.getInt(3);
 
-                        System.out.println(rs.getInt(4));
-                        c_id = rs.getInt(4);
+//                        System.out.println(rs.getInt(4));
+//                        c_id = rs.getInt(4);
 
                         findReservationByDate = new FindReservationByDate(day, t_id);
                         reservationsTable.getItems().add(findReservationByDate);
@@ -128,8 +128,8 @@ public class MakeReservationsController implements Initializable {
                 System.out.println("Connected to database");
 
                 try (CallableStatement stmt = connection.prepareCall(callMakeReservations)) {
-                    stmt.setDate(1, Date.valueOf(placeDate));
-                    stmt.setInt(2, t_id);
+                    stmt.setDate(1, Date.valueOf("2022-04-04"));
+                    stmt.setInt(2, 1);
                     stmt.setInt(3, User.getID());
                     stmt.executeQuery();
 
