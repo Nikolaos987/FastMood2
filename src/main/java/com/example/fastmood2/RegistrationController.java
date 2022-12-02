@@ -73,8 +73,8 @@ public class RegistrationController {
         //CallableStatement stmt = null;
 
         // new2
-        String call = "{call REGISTERCUSTOMER(?,?,?,?,?)}";
-        String callAdmin = "{call REGISTERADMIN(?,?,?,?,?)}";
+        String call = "{callFindReservationsByDate REGISTERCUSTOMER(?,?,?,?,?)}";
+        String callAdmin = "{callFindReservationsByDate REGISTERADMIN(?,?,?,?,?)}";
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             //stmt = connection.createStatement();

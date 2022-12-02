@@ -3,14 +3,22 @@ package com.example.fastmood2;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import oracle.jdbc.OracleTypes;
 import oracle.jdbc.logging.annotations.Log;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -31,6 +39,11 @@ public class LogfileController implements Initializable {
 //    @FXML
 //    private TableColumn colTableName;
 
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private TableView<LogData> table1;
     @FXML
@@ -45,6 +58,11 @@ public class LogfileController implements Initializable {
     private TableColumn<LogData,String> colMoment;
     @FXML
     private TableColumn<LogData,String> colTableName;
+
+
+    @FXML
+    private Button backButton;
+
 
 
     public String c_id;
@@ -109,4 +127,26 @@ public class LogfileController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
+    public void orderDetails(ActionEvent event) throws IOException {
+        changeTheScene(event, "orderDetailsScene.fxml");
+    }
+
+    public void staffHistory(ActionEvent event) throws IOException {
+        //changeTheScene(event, "mainScene.fxml");
+    }
+
+    public void mainScene(ActionEvent event) throws IOException {
+        changeTheScene(event, "mainScene.fxml");
+    }
+
+    public void changeTheScene(ActionEvent event, String fxml) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(fxml));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

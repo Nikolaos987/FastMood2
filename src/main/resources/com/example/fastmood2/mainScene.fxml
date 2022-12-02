@@ -11,16 +11,15 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="120.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="reservationsButton" layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#reservationsScene" prefHeight="80.0" prefWidth="150.0" text="Reservations" />
-            <Button fx:id="menuButton" layoutX="-2.0" layoutY="79.0" mnemonicParsing="false" onAction="#menuScene" prefHeight="80.0" prefWidth="150.0" text="Menu" />
-            <Button fx:id="accountButton" layoutX="-2.0" layoutY="159.0" mnemonicParsing="false" onAction="#accountScene" prefHeight="80.0" prefWidth="150.0" text="Account Settings" />
-            <Button fx:id="aboutusButton" layoutX="-2.0" layoutY="239.0" mnemonicParsing="false" onAction="#aboutusScene" prefHeight="80.0" prefWidth="150.0" text="About Us" />
-            <Button fx:id="adminButton" disable="true" layoutX="-2.0" layoutY="319.0" mnemonicParsing="false" onAction="#adminScene" prefHeight="80.0" prefWidth="150.0" text="Admin Settings" />
+            <Button fx:id="reservationsButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#reservationsScene" prefHeight="66.0" prefWidth="120.0" text="Reservations" />
+            <Button fx:id="menuButton" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#menuScene" prefHeight="66.0" prefWidth="120.0" text="Menu" />
+            <Button fx:id="accountButton" layoutX="14.0" layoutY="207.0" mnemonicParsing="false" onAction="#accountScene" prefHeight="66.0" prefWidth="120.0" text="Account Settings" />
+            <Button fx:id="adminButton" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#adminScene" prefHeight="66.0" prefWidth="120.0" text="Admin Settings" />
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="400.0" prefWidth="512.0" style="-fx-background-color: #f7be94;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="451.0" style="-fx-background-color: #f7be94;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="126.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="130.0" layoutY="172.0" text="Welcome to Fast Mood!">
@@ -31,7 +30,6 @@
             <Label layoutX="25.0" layoutY="254.0" text="phone number: 1234567890" />
             <Label layoutX="25.0" layoutY="291.0" text="email: fastmood@hotmail.com" />
             <Button fx:id="logoutButton" layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" text="log out" />
-            <Button fx:id="logfileButton" layoutX="195.0" layoutY="338.0" mnemonicParsing="false" onAction="#logfileButtonPressed" prefHeight="47.0" prefWidth="61.0" text="logfile" />
          </children></AnchorPane>
    </right>
 </BorderPane>

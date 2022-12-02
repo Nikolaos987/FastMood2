@@ -3,6 +3,7 @@ package com.example.fastmood2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,10 +15,12 @@ import javax.swing.plaf.nimbus.State;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
     @FXML
     private Button reservationsButton;
     @FXML
@@ -65,7 +68,7 @@ public class MainController {
         changeTheScene(event, "aboutusScene.fxml");
     }
     public void adminScene(ActionEvent event) throws IOException {
-        changeTheScene(event, "adminScene.fxml");
+        changeTheScene(event, "logfileScene.fxml");
     }
 
     public void logout(ActionEvent event) throws IOException {
@@ -76,37 +79,7 @@ public class MainController {
 //        changeTheScene(event, "logfileScene.fxml");
 //    }
 
-    public void logfileButtonPressed(ActionEvent event) throws IOException {
-//        if (User.getIsStaff()) {
-//            LogData lc;
-//            try {
-//                //Class.forName("Oracle.jdbc.driver.OracleDriver");
-//                Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-//                Statement stmt = connection.createStatement();
-//                ResultSet rs = stmt.executeQuery("select * from LOGFILE");
-//                while (rs.next()) {
-//                    String c_id = String.valueOf(rs.getInt("CUSTOMERID"));
-//                    String fullname = rs.getString("FULLNAME");
-//                    String tablename = rs.getString("tablename");
-//                    String action = rs.getString("action");
-//                    String moment = rs.getString("moment");
-//                    String staffid = String.valueOf(rs.getInt("staffid"));
-//                    System.out.println(c_id + "\t\t" + staffid +"\t\t" + fullname + "\t\t\t\t" + tablename + "\t\t\t\t" + action + "\t\t\t\t" + moment);
-//
-//                    lc = new LogData(staffid, c_id, fullname, action, moment, tablename);
-//                    //String tbData[] = {c_id, fullname, tablename, action, moment, staffid};
-//                    //DefaultTableModel tblModel = (DefaultTableModel) table1.getModel();
-//                    //Arrays.stream(tbData).toArray();
-//                }
-        changeTheScene(event, "logfileScene.fxml");
-//                connection.close();
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }/* catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }*/
-//        }
-    }
+
 
     public void changeTheScene(ActionEvent event, String fxml) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
@@ -115,5 +88,11 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
-    
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (!User.getIsStaff()) {
+            adminButton.setDisable(true);
+        }
+    }
 }

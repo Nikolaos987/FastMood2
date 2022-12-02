@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.ReservationsController">
-   <center>
+   <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="orderTable" layoutX="41.0" layoutY="90.0" prefHeight="200.0" prefWidth="513.0">
+            <TableView fx:id="tables" layoutX="43.0" layoutY="100.0" prefHeight="200.0" prefWidth="513.0">
               <columns>
-                <TableColumn fx:id="name" prefWidth="75.0" text="name" />
-                <TableColumn fx:id="cost" prefWidth="75.0" text="cost" />
+                <TableColumn fx:id="tableNumber" prefWidth="75.0" text="Table Number" />
+                <TableColumn fx:id="tableClass" prefWidth="75.0" text="Table Class" />
+                  <TableColumn fx:id="capacity" prefWidth="75.0" text="Capacity" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button fx:id="button" layoutX="355.0" layoutY="326.0" mnemonicParsing="false" onAction="#showOrders" text="search" />
-            <TextField fx:id="costField" layoutX="189.0" layoutY="326.0" promptText="enter a cost" />
+            <Label layoutX="161.0" layoutY="27.0" text="These are the available tables for reservation">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="43.0" layoutY="23.0" mnemonicParsing="false" onAction="#goBack" text="BACK">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children></AnchorPane>
-   </center>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="reservationButton" layoutX="260.0" layoutY="15.0" mnemonicParsing="false" onAction="#makeReservationsScene" prefHeight="70.0" prefWidth="79.0" text="Make Your Reservation Here" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>
