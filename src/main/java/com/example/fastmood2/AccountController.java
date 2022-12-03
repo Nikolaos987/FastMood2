@@ -21,43 +21,32 @@ import java.util.ResourceBundle;
 public class AccountController implements Initializable {
     @FXML
     private TextField fullname;
-
     @FXML
     private TextField phone;
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField username;
 
     @FXML
     private Button saveFullnameButton;
-
     @FXML
     private Button savePhoneButton;
-
     @FXML
     private Button saveEmailButton;
-
     @FXML
     private Button saveUsernameButton;
-
     @FXML
     private Button okButton;
-
     @FXML
     private Button deleteAccountButton;
 
     @FXML
     private Label fullnameLabel;
-
     @FXML
     private Label phoneLabel;
-
     @FXML
     private Label emailLabel;
-
     @FXML
     private Label usernameLabel;
 
@@ -66,6 +55,11 @@ public class AccountController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+
+    String nullField;
+    String sameField;
+    boolean sameFlag = false;
 
 
     public String c_name;
@@ -91,12 +85,21 @@ public class AccountController implements Initializable {
     }
 
     public void SaveFullnameButton_Pressed(ActionEvent event) throws IOException {
+        sameFlag = false;
+        fullnameLabel.setText("");
 
-        if (!fullname.getText().equals("")) {
+        if (fullname.getText().equals(User.getFullname())) {
+            sameFlag = true;
+            sameField = "fullname can't be the same with current one!";
+        }
+
+        if (!fullname.getText().equals("") && !fullname.getText().equals(User.getFullname())) {
             c_name = fullname.getText();
             c_phone = User.getPhone();
             c_email = User.getEmail();
             c_username = User.getUsername();
+
+
 
             Connection connection = null;
             try {
@@ -122,17 +125,29 @@ public class AccountController implements Initializable {
 //                    }
                 }
                 User.setFullname(c_name);
-
+                fullnameLabel.setText("fullname changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else
-            fullnameLabel.setText("Field can't be null!");
+        } else {
+            if (sameFlag) {
+                fullnameLabel.setText(sameField);
+            } else
+                fullnameLabel.setText("Field can't be null!");
+        }
     }
 
 
     public void savePhoneButton_Pressed(ActionEvent event) {
-        if (!phone.getText().equals("")) {
+        sameFlag = false;
+        phoneLabel.setText("");
+
+        if (phone.getText().equals(User.getPhone())) {
+            sameFlag = true;
+            sameField = "phone number can't be the same with current one!";
+        }
+
+        if (!phone.getText().equals("") && !phone.getText().equals(User.getPhone())) {
             c_name = User.getFullname();
             c_phone = phone.getText();
             c_email = User.getEmail();
@@ -150,17 +165,30 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setPhone(c_phone);
+                phoneLabel.setText("phone changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } else
-            phoneLabel.setText("Field can't be null!");
+        } else {
+            if (sameFlag) {
+                phoneLabel.setText(sameField);
+            } else
+                phoneLabel.setText("Field can't be null!");
+        }
     }
 
     public void saveEmailButton_Pressed(ActionEvent event) {
-        if (!email.getText().equals("")) {
+        sameFlag = false;
+        emailLabel.setText("");
+
+        if (email.getText().equals(User.getEmail())) {
+            sameFlag = true;
+            sameField = "email can't be the same with current one!";
+        }
+
+        if (!email.getText().equals("") && !email.getText().equals(User.getEmail())) {
             c_name = User.getFullname();
             c_phone = User.getPhone();
             c_email = email.getText();
@@ -178,17 +206,30 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setEmail(c_email);
+                emailLabel.setText("email changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } else
-            emailLabel.setText("Field can't be null!");
+        } else {
+            if (sameFlag) {
+                emailLabel.setText(sameField);
+            } else
+                emailLabel.setText("Field can't be null!");
+        }
     }
 
     public void saveUsernameButton_Pressed(ActionEvent event) {
-        if (!email.getText().equals("")) {
+        sameFlag = false;
+        usernameLabel.setText("");
+
+        if (username.getText().equals(User.getUsername())) {
+            sameFlag = true;
+            sameField = "username can't be the same with current one!";
+        }
+
+        if (!username.getText().equals("") && !username.getText().equals(User.getUsername())) {
             c_name = User.getFullname();
             c_phone = User.getPhone();
             c_email = User.getEmail();
@@ -206,13 +247,18 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setUsername(c_username);
+                usernameLabel.setText("username changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } else
-            usernameLabel.setText("Field can't be null!");
+        } else {
+            if (sameFlag) {
+                usernameLabel.setText(sameField);
+            } else
+                usernameLabel.setText("Field can't be null!");
+        }
     }
 
 
@@ -232,6 +278,7 @@ public class AccountController implements Initializable {
                 String sqlDelete = "delete from Customers where CID=" + User.getID();
                 PreparedStatement psDelete = conn.prepareStatement(sqlDelete);
                 ResultSet rsDelete = psDelete.executeQuery();
+
             } else if (User.getIsStaff()) {
                 String sqlDelete = "delete from Staff where SID=" + User.getID();
                 PreparedStatement psDelete = conn.prepareStatement(sqlDelete);
@@ -255,6 +302,9 @@ public class AccountController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        fullname.setText(User.getFullname());
+        phone.setText(User.getPhone());
+        email.setText(User.getEmail());
+        username.setText(User.getUsername());
     }
 }
