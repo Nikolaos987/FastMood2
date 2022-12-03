@@ -13,23 +13,16 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="reservationsTable" layoutX="29.0" layoutY="48.0" prefHeight="252.0" prefWidth="549.0">
+            <TableView fx:id="tables" layoutX="29.0" layoutY="48.0" prefHeight="252.0" prefWidth="549.0">
               <columns>
-                <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
-                  <TableColumn fx:id="tableID" prefWidth="75.0" text="Table Number" />
-                  <TableColumn fx:id="customer" prefWidth="75.0" text="Customer" />
-                  <TableColumn fx:id="phone" prefWidth="75.0" text="Phone" />
+                <TableColumn fx:id="tableNumber" prefWidth="75.0" text="Table Number" />
+                  <TableColumn fx:id="tableClass" prefWidth="75.0" text="Table Class" />
+                  <TableColumn fx:id="capacity" prefWidth="75.0" text="Capacity" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="dateField" alignment="CENTER" layoutX="373.0" layoutY="14.0" promptText="YYYY-MM-DD" />
-            <Button fx:id="searchButton" layoutX="533.0" layoutY="14.0" mnemonicParsing="false" onAction="#findReservations" text="Filter">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
             <Button fx:id="reservationButton" layoutX="499.0" layoutY="323.0" mnemonicParsing="false" onAction="#placeRecervation" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #ADD8E6;" text="Place a reservation" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -44,11 +37,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="resetButton" layoutX="304.0" layoutY="14.0" mnemonicParsing="false" onAction="#resetTable" text="RESET">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
+            <Label layoutX="75.0" layoutY="7.0" prefHeight="36.0" prefWidth="208.0" text="These are the available tables for reservations" wrapText="true" />
          </children></AnchorPane>
    </center>
 </BorderPane>

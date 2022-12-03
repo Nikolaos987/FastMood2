@@ -134,7 +134,7 @@ public class LogfileController implements Initializable {
     }
 
     public void staffHistory(ActionEvent event) throws IOException {
-        //changeTheScene(event, "mainScene.fxml");
+        changeTheScene(event, "staffHistoryScene.fxml");
     }
 
     public void mainScene(ActionEvent event) throws IOException {

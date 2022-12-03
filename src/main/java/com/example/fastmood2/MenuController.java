@@ -42,6 +42,8 @@ public class MenuController implements Initializable {
     private Button priceButton;
     @FXML
     private Button dishButton;
+    @FXML
+    private Button createDishButton;
 
     @FXML
     private TextField priceField;
@@ -173,6 +175,12 @@ public class MenuController implements Initializable {
 
 
 
+    public void createDish(ActionEvent event) throws IOException {
+        changeTheScene(event, "dishCreation.fxml");
+    }
+
+
+
     public void mainScene(ActionEvent event) throws IOException {
         changeTheScene(event, "mainScene.fxml");
     }
@@ -187,6 +195,11 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (!User.getIsStaff()) {
+            createDishButton.setDisable(true);
+            createDishButton.setVisible(false);
+        }
+
         PriceFilter priceFilter;
 
         menuTable.getItems().clear(); // clear all the rows from the TableView
