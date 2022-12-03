@@ -39,6 +39,11 @@
             </Button>
             <TextField fx:id="dishField" layoutX="209.0" layoutY="349.0" promptText="dish name..." />
             <TextField fx:id="priceField" layoutX="210.0" layoutY="315.0" promptText="maximum price..." />
+            <Button fx:id="createDishButton" layoutX="480.0" layoutY="337.0" mnemonicParsing="false" onAction="#createDish" text="CREATE DISH">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>

@@ -56,7 +56,11 @@ public class MainController implements Initializable {
     private Parent root;
 
     public void reservationsScene(ActionEvent event) throws IOException {
-        changeTheScene(event, "reservationsScene.fxml");
+        if (!User.getIsStaff()) {
+            changeTheScene(event, "makeReservationsScene.fxml");
+        } else {
+            changeTheScene(event, "reservationsScene.fxml");
+        }
     }
     public void menuScene(ActionEvent event) throws IOException {
         changeTheScene(event, "menuScene.fxml");
