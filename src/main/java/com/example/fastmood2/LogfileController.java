@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import oracle.jdbc.OracleTypes;
-import oracle.jdbc.logging.annotations.Log;
+// import oracle.jdbc.logging.annotations.Log;
 
 import java.io.IOException;
 import java.net.URL;
