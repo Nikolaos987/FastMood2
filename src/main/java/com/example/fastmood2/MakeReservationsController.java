@@ -18,6 +18,9 @@ import oracle.jdbc.internal.OracleTypes;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class MakeReservationsController implements Initializable {
@@ -85,6 +88,8 @@ public class MakeReservationsController implements Initializable {
     String c_name;
     String c_phone;
     int c_id;
+
+    DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 
 //    public void findReservations(ActionEvent event) throws IOException {
@@ -157,6 +162,13 @@ public class MakeReservationsController implements Initializable {
         if (!tableField.getText().equals("") && !rDateField.getText().equals("")) {
             t_id = Integer.parseInt(tableField.getText());
             placeDate = rDateField.getText();
+
+
+//            DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//            LocalDateTime datetime = LocalDateTime.parse(placeDate, oldPattern);
+//            String output = datetime.format(newPattern);
+
 
             try {
                 System.out.println("Trying to connect to database...");

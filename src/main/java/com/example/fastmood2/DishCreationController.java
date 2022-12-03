@@ -7,8 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,9 +33,10 @@ public class DishCreationController {
     private TextField priceField;
     @FXML
     private Button createButton;
-
     @FXML
     private Button backButton;
+    @FXML
+    private Label createLabel;
 
 
     public String callINSERTDISH = "{call INSERTDISH(?,?,?)}";
@@ -62,6 +65,8 @@ public class DishCreationController {
                     stmt.setFloat(3, dish_price);
                     stmt.execute();
                     System.out.println("Dish inserted!");
+                    createLabel.setTextFill(Color.rgb(3, 125, 80));
+                    createLabel.setText("Dish inserted!");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);

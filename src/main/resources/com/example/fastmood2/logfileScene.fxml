@@ -45,7 +45,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="436.0" layoutY="318.0" mnemonicParsing="false" text="Customer Details">
+            <Button layoutX="436.0" layoutY="318.0" mnemonicParsing="false" onAction="#customerDetails" text="Customer Details">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

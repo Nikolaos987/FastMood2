@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -85,6 +86,7 @@ public class AccountController implements Initializable {
     }
 
     public void SaveFullnameButton_Pressed(ActionEvent event) throws IOException {
+        fullnameLabel.setTextFill(Color.rgb(255, 49, 49));
         sameFlag = false;
         fullnameLabel.setText("");
 
@@ -125,6 +127,7 @@ public class AccountController implements Initializable {
 //                    }
                 }
                 User.setFullname(c_name);
+                fullnameLabel.setTextFill(Color.rgb(3, 125, 80));
                 fullnameLabel.setText("fullname changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -139,6 +142,7 @@ public class AccountController implements Initializable {
 
 
     public void savePhoneButton_Pressed(ActionEvent event) {
+        phoneLabel.setTextFill(Color.rgb(255, 49, 49));
         sameFlag = false;
         phoneLabel.setText("");
 
@@ -165,6 +169,7 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setPhone(c_phone);
+                phoneLabel.setTextFill(Color.rgb(3, 125, 80));
                 phoneLabel.setText("phone changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -180,6 +185,7 @@ public class AccountController implements Initializable {
     }
 
     public void saveEmailButton_Pressed(ActionEvent event) {
+        emailLabel.setTextFill(Color.rgb(255, 49, 49));
         sameFlag = false;
         emailLabel.setText("");
 
@@ -206,6 +212,7 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setEmail(c_email);
+                emailLabel.setTextFill(Color.rgb(3, 125, 80));
                 emailLabel.setText("email changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -221,6 +228,7 @@ public class AccountController implements Initializable {
     }
 
     public void saveUsernameButton_Pressed(ActionEvent event) {
+        usernameLabel.setTextFill(Color.rgb(255, 49, 49));
         sameFlag = false;
         usernameLabel.setText("");
 
@@ -247,6 +255,7 @@ public class AccountController implements Initializable {
                     changeUser(c_name, c_phone, c_email, c_username, callStaff, connection);
                 }
                 User.setUsername(c_username);
+                usernameLabel.setTextFill(Color.rgb(3, 125, 80));
                 usernameLabel.setText("username changed!");
             } catch (SQLException e) {
                 e.printStackTrace();
