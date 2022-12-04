@@ -34,7 +34,7 @@ public class OrderDetailsController implements Initializable {
     @FXML
     private TableColumn<OrderDetails, Float> dishPrice;
     @FXML
-    private TableColumn<OrderDetails, Integer> orderNumber;
+    private TableColumn<OrderDetails, String> servedBy;
 
 
     @FXML
@@ -50,7 +50,7 @@ public class OrderDetailsController implements Initializable {
     int tidField;
     String dname;
     float dprice;
-    int osid;
+    String osid;
 
 
     public String callSHOWORDERS = "{CALL SHOWORDERS(?)}";
@@ -81,7 +81,7 @@ public class OrderDetailsController implements Initializable {
         tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
         dishName.setCellValueFactory(new PropertyValueFactory<>("Dname"));
         dishPrice.setCellValueFactory(new PropertyValueFactory<>("Dprice"));
-        orderNumber.setCellValueFactory(new PropertyValueFactory<>("Osid"));
+        servedBy.setCellValueFactory(new PropertyValueFactory<>("Osid"));
 
         try {
             System.out.println("Trying to connect to database...");
@@ -104,8 +104,8 @@ public class OrderDetailsController implements Initializable {
                     System.out.println(rs.getFloat(3));
                     dprice = rs.getFloat(3);
 
-                    System.out.println(rs.getFloat(4));
-                    osid = rs.getInt(4);
+                    System.out.println(rs.getString(4));
+                    osid = rs.getString(4);
 
                     orderDetails = new OrderDetails(tid, dname, dprice, osid);
                     ordersTable.getItems().add(orderDetails);
@@ -132,7 +132,7 @@ public class OrderDetailsController implements Initializable {
             tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
             dishName.setCellValueFactory(new PropertyValueFactory<>("Dname"));
             dishPrice.setCellValueFactory(new PropertyValueFactory<>("Dprice"));
-            orderNumber.setCellValueFactory(new PropertyValueFactory<>("Osid"));
+            servedBy.setCellValueFactory(new PropertyValueFactory<>("Osid"));
 
             try {
                 System.out.println("Trying to connect to database...");
@@ -156,8 +156,8 @@ public class OrderDetailsController implements Initializable {
                         System.out.println(rs.getFloat(3));
                         dprice = rs.getFloat(3);
 
-                        System.out.println(rs.getFloat(4));
-                        osid = rs.getInt(4);
+                        System.out.println(rs.getString(4));
+                        osid = rs.getString(4);
 
                         orderDetails = new OrderDetails(tid, dname, dprice, osid);
                         ordersTable.getItems().add(orderDetails);

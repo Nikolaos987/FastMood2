@@ -23,8 +23,11 @@ public class RegistrationController {
     private TextField email;
     @FXML
     private TextField username;
+
     @FXML
     private PasswordField password;
+
+
     @FXML
     private ToggleButton toggleButton;
     @FXML
@@ -46,6 +49,8 @@ public class RegistrationController {
 
     int id = 6;
 
+    String call = "{call REGISTERCUSTOMER(?,?,?,?,?)}";
+    String callAdmin = "{call REGISTERADMIN(?,?,?,?,?)}";
 
     public void activateAdminKey(ActionEvent event) throws IOException {
 
@@ -55,7 +60,7 @@ public class RegistrationController {
         registerLabel.setTextFill(Color.rgb(3, 125, 80));
 
         id++;
-        String name = username.getText();
+        String name = fullName.getText(); // eixe username.getText();
         String phone = phoneNumber.getText();
         String mail = email.getText();
         String user = username.getText();
@@ -75,8 +80,8 @@ public class RegistrationController {
         //CallableStatement stmt = null;
 
         // new2
-        String call = "{callFindReservationsByDate REGISTERCUSTOMER(?,?,?,?,?)}";
-        String callAdmin = "{callFindReservationsByDate REGISTERADMIN(?,?,?,?,?)}";
+//        String call = "{callFindReservationsByDate REGISTERCUSTOMER(?,?,?,?,?)}";
+//        String callAdmin = "{callFindReservationsByDate REGISTERADMIN(?,?,?,?,?)}";
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
             //stmt = connection.createStatement();
@@ -92,12 +97,20 @@ public class RegistrationController {
             if (admin==false) {
                 try (CallableStatement stmt = connection.prepareCall(call)) {
 //                    stmt.setInt(1, id);
-                    stmt.setString(1, name);
-                    stmt.setString(2, phone);
-                    stmt.setString(3, mail);
-                    stmt.setString(4, user);
-                    stmt.setString(5, pass);
+
+//                    stmt.setString(1, name);
+//                    stmt.setString(2, phone);
+//                    stmt.setString(3, mail);
+//                    stmt.setString(4, user);
+//                    stmt.setString(5, pass);
+
+                    stmt.setString(1, fullName.getText());
+                    stmt.setString(2, phoneNumber.getText());
+                    stmt.setString(3, email.getText());
+                    stmt.setString(4, username.getText());
+                    stmt.setString(5, password.getText());
                     stmt.execute();
+
                     System.out.println("CUSTOMER: Row Inserted!");
                     registerLabel.setText("Registration successful!");
                 }

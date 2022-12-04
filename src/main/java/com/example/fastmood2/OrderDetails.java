@@ -8,13 +8,13 @@ public class OrderDetails {
     private SimpleIntegerProperty tid;
     private SimpleStringProperty dname;
     private SimpleFloatProperty dprice;
-    private SimpleIntegerProperty osid;
+    private SimpleStringProperty osid;
 
-    public OrderDetails(int t_id, String d_name, float d_price, int o_sid) {
+    public OrderDetails(int t_id, String d_name, float d_price, String o_sid) {
         this.tid = new SimpleIntegerProperty(t_id);
         this.dname = new SimpleStringProperty(d_name);
         this.dprice = new SimpleFloatProperty(d_price);
-        this.osid = new SimpleIntegerProperty(o_sid);
+        this.osid = new SimpleStringProperty(o_sid);
     }
 
     public int getTid() {
@@ -41,12 +41,12 @@ public class OrderDetails {
         this.dprice = new SimpleFloatProperty(d_price);
     }
 
-    public int getOsid() {
+    public String getOsid() {
         return osid.get();
     }
 
-    public void setOsid(int o_sid) {
-        this.osid = new SimpleIntegerProperty(o_sid);
+    public void setOsid(String o_sid) {
+        this.osid = new SimpleStringProperty(o_sid);
     }
 
 }

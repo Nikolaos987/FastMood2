@@ -24,7 +24,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label layoutX="161.0" layoutY="27.0" text="These are the reservations already made">
+            <Label layoutX="253.0" layoutY="27.0" text="All reservations">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
