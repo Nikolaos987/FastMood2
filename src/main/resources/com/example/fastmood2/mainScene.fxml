@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,30 +10,31 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.MainController">
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #FFFF99;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="187.0" style="-fx-background-color: #FFFF99;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="reservationsButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#reservationsScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Reservations" />
-            <Button fx:id="menuButton" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#menuScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Menu" />
-            <Button fx:id="accountButton" layoutX="14.0" layoutY="207.0" mnemonicParsing="false" onAction="#accountScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Account Settings" />
-            <Button fx:id="adminButton" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#adminScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Admin Settings" />
+            <Button fx:id="reservationsButton" layoutX="40.0" layoutY="28.0" mnemonicParsing="false" onAction="#reservationsScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Reservations" />
+            <Button fx:id="menuButton" layoutX="40.0" layoutY="120.0" mnemonicParsing="false" onAction="#menuScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Menu" />
+            <Button fx:id="accountButton" layoutX="40.0" layoutY="208.0" mnemonicParsing="false" onAction="#accountScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Account Settings" />
+            <Button fx:id="adminButton" layoutX="40.0" layoutY="293.0" mnemonicParsing="false" onAction="#adminScene" prefHeight="66.0" prefWidth="120.0" style="-fx-background-color: #add8e6;" text="Admin Settings" />
          </children>
       </AnchorPane>
    </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="451.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="342.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="126.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="130.0" layoutY="172.0" text="Welcome to Fast Mood!">
+            <ImageView fitHeight="400.0" fitWidth="406.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/Fastmood.png" />
+               </image></ImageView>
+            <Label layoutX="140.0" layoutY="82.0" text="Welcome to" textFill="#d1c2c2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="254.0" text="phone number: 1234567890" />
-            <Label layoutX="25.0" layoutY="291.0" text="email: fastmood@hotmail.com" />
-            <Button fx:id="logoutButton" layoutX="372.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #F47174;" text="LOG OUT">
+            <Button fx:id="logoutButton" layoutX="320.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #F47174;" text="LOG OUT">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
          </children></AnchorPane>
-   </right>
+   </center>
 </BorderPane>
