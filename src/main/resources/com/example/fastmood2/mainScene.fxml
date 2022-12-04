@@ -25,7 +25,8 @@
             <ImageView fitHeight="400.0" fitWidth="406.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/Fastmood.png" />
-               </image></ImageView>
+               </image>
+            </ImageView>
             <Label layoutX="140.0" layoutY="82.0" text="Welcome to" textFill="#d1c2c2">
                <font>
                   <Font name="System Bold" size="26.0" />
