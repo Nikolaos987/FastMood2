@@ -5,8 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.CustomerDetailsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFD580;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.CustomerDetailsController">
    <children>
       <TableView fx:id="customerDetailsTable" layoutX="6.0" layoutY="69.0" prefHeight="200.0" prefWidth="588.0">
         <columns>
@@ -20,7 +21,12 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="fullnameField" layoutX="91.0" layoutY="287.0" promptText="enter a name..." />
-      <Button fx:id="searchButton" layoutX="274.0" layoutY="287.0" mnemonicParsing="false" onAction="#searchCustomers" text="O-" />
+      <TextField fx:id="fullnameField" layoutX="210.0" layoutY="303.0" promptText="enter a name..." />
+      <Button fx:id="searchButton" layoutX="360.0" layoutY="303.0" mnemonicParsing="false" onAction="#searchCustomers" text="O-" />
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #add8e6;" text="BACK" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

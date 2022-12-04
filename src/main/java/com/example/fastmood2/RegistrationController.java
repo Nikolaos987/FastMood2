@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,6 +33,8 @@ public class RegistrationController {
     private Button registerButton;
     @FXML
     private Button backButton;
+    @FXML
+    private Label registerLabel;
 
 
     private Stage stage;
@@ -52,6 +52,8 @@ public class RegistrationController {
     }
 
     public void registerUser(ActionEvent event) throws IOException {
+        registerLabel.setTextFill(Color.rgb(3, 125, 80));
+
         id++;
         String name = username.getText();
         String phone = phoneNumber.getText();
@@ -97,6 +99,7 @@ public class RegistrationController {
                     stmt.setString(5, pass);
                     stmt.execute();
                     System.out.println("CUSTOMER: Row Inserted!");
+                    registerLabel.setText("Registration successful!");
                 }
             } else if (admin) {
                 try (CallableStatement stmt = connection.prepareCall(callAdmin)) {
@@ -108,6 +111,7 @@ public class RegistrationController {
                     stmt.setString(5, pass);
                     stmt.execute();
                     System.out.println("STAFF: Row Inserted!");
+                    registerLabel.setText("Registration successful!");
                 }
             }
 

@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.MakeReservationsController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="tables" layoutX="29.0" layoutY="48.0" prefHeight="252.0" prefWidth="549.0">
               <columns>
@@ -23,21 +23,25 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button fx:id="reservationButton" layoutX="499.0" layoutY="323.0" mnemonicParsing="false" onAction="#placeRecervation" prefHeight="58.0" prefWidth="80.0" style="-fx-background-color: #ADD8E6;" text="Place a reservation" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="reservationButton" layoutX="306.0" layoutY="315.0" mnemonicParsing="false" onAction="#placeRecervation" prefHeight="61.0" prefWidth="102.0" style="-fx-background-color: #90EE90;" text="Place a reservation" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tableField" layoutX="193.0" layoutY="320.0" prefHeight="26.0" prefWidth="100.0" />
+            <TextField fx:id="rDateField" layoutX="193.0" layoutY="353.0" prefHeight="26.0" prefWidth="100.0" />
+            <Label layoutX="85.0" layoutY="321.0" text="table for reservation" />
+            <Label layoutX="29.0" layoutY="354.0" text="reservation date YYYY-MM-DD" />
+            <Button fx:id="backButton" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #add8e6;" text="BACK" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="tableField" layoutX="254.0" layoutY="322.0" prefHeight="26.0" prefWidth="100.0" />
-            <TextField fx:id="rDateField" layoutX="254.0" layoutY="355.0" prefHeight="26.0" prefWidth="100.0" />
-            <Label layoutX="146.0" layoutY="323.0" text="table for reservation" />
-            <Label layoutX="90.0" layoutY="356.0" text="reservation date YYYY-MM-DD" />
-            <Button fx:id="backButton" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="BACK">
+            <Label layoutX="200.0" layoutY="9.0" prefHeight="36.0" prefWidth="208.0" text="These are the available tables for reservations" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label layoutX="75.0" layoutY="7.0" prefHeight="36.0" prefWidth="208.0" text="These are the available tables for reservations" wrapText="true" />
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></Label>
+            <Label fx:id="reservationLabel" layoutX="416.0" layoutY="315.0" prefHeight="66.0" prefWidth="178.0" textAlignment="CENTER" />
          </children></AnchorPane>
    </center>
 </BorderPane>

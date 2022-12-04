@@ -97,6 +97,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (!User.getIsStaff()) {
             adminButton.setDisable(true);
+            adminButton.setVisible(false);
         }
     }
 }

@@ -14,9 +14,9 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="400.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
-               <!--<image>
+               <image>
                   <Image url="/Fastmood.png" />
-               </image>-->
+               </image>
             </ImageView>
          </children>
       </AnchorPane>
@@ -25,14 +25,14 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="86.0" fitWidth="168.0" layoutX="34.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-               <!--<image>
+               <image>
                   <Image url="/lock.png" />
-               </image>-->
+               </image>
             </ImageView>
             <TextField fx:id="username" layoutX="26.0" layoutY="151.0" promptText="Username" />
             <PasswordField fx:id="password" layoutX="27.0" layoutY="200.0" promptText="Password" />
-            <Button fx:id="loginButton" layoutX="28.0" layoutY="330.0" mnemonicParsing="false" onAction="#userLogin" text="Login" />
-            <Button fx:id="signupButton" layoutX="119.0" layoutY="330.0" mnemonicParsing="false" onAction="#signUpUser" text="Sign Up" />
+            <Button fx:id="loginButton" layoutX="28.0" layoutY="330.0" mnemonicParsing="false" onAction="#userLogin" style="-fx-background-color: #90EE90;" text="Login" />
+            <Button fx:id="signupButton" layoutX="119.0" layoutY="330.0" mnemonicParsing="false" onAction="#signUpUser" style="-fx-background-color: #add8e6;" text="Sign Up" />
             <Label fx:id="warning" layoutY="296.0" prefHeight="18.0" prefWidth="198.0" textFill="RED" />
          </children>
       </AnchorPane>

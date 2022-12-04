@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastmood2.ReservationsController">
    <top>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="reservationsTable" layoutX="43.0" layoutY="100.0" prefHeight="200.0" prefWidth="513.0">
               <columns>
@@ -29,22 +29,28 @@
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="43.0" layoutY="23.0" mnemonicParsing="false" onAction="#goBack" text="BACK">
+            <Button fx:id="backButton" layoutX="43.0" layoutY="23.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #add8e6;" text="BACK" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <TextField fx:id="dateField" layoutX="376.0" layoutY="56.0" promptText="YYYY-MM-DD" />
-            <Button fx:id="searchButton" layoutX="526.0" layoutY="56.0" mnemonicParsing="false" onAction="#findReservations" text="O-" />
-            <Button fx:id="resetButton" layoutX="317.0" layoutY="56.0" mnemonicParsing="false" onAction="#resetTable" text="RESET" />
+            <Button fx:id="searchButton" layoutX="526.0" layoutY="56.0" mnemonicParsing="false" onAction="#findReservations" text="O-">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="resetButton" layoutX="317.0" layoutY="56.0" mnemonicParsing="false" onAction="#resetTable" text="RESET">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children></AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD580;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="reservationButton" layoutX="260.0" layoutY="15.0" mnemonicParsing="false" onAction="#makeReservationsScene" prefHeight="70.0" prefWidth="79.0" text="Make Your Reservation Here" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="reservationButton" layoutX="257.0" layoutY="15.0" mnemonicParsing="false" onAction="#makeReservationsScene" prefHeight="70.0" prefWidth="86.0" text="Make Your Reservation Here" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>

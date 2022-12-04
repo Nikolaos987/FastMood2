@@ -7,11 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import oracle.jdbc.internal.OracleTypes;
 
@@ -61,6 +59,9 @@ public class MakeReservationsController implements Initializable {
     private TextField tableField;
     @FXML
     private TextField rDateField;
+
+    @FXML
+    private Label reservationLabel;
 
 
     private Stage stage;
@@ -157,6 +158,8 @@ public class MakeReservationsController implements Initializable {
 //    }
 
     public void placeRecervation(ActionEvent event) throws IOException {
+        reservationLabel.setTextFill(Color.rgb(3, 125, 80));
+
         Connection connection = null;
 
         if (!tableField.getText().equals("") && !rDateField.getText().equals("")) {
@@ -182,6 +185,7 @@ public class MakeReservationsController implements Initializable {
                     stmt.executeQuery();
 
                     System.out.println("\nReservation created on " + placeDate + ", for table " + t_id);
+                    reservationLabel.setText("Reservation successful\nThank you!");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
