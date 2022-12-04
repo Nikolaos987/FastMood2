@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="200.0" layoutY="9.0" prefHeight="36.0" prefWidth="208.0" text="These are the available tables for reservations" textAlignment="CENTER" wrapText="true">
+            <Label layoutX="202.0" layoutY="9.0" prefHeight="36.0" prefWidth="208.0" text="These are the available tables for reservations for today" textAlignment="CENTER" textFill="#7b4242" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></Label>
