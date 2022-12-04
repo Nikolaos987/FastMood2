@@ -206,17 +206,21 @@ public class ReservationsController implements Initializable {
 
 
         public void findReservations(ActionEvent event) throws IOException {
+        if (dateField.getText().equals("")) {
+            resetTable(new ActionEvent());
+        } else {
 
-        FindReservationByDate findReservationByDate;
 
-        reservationsTable.getItems().clear(); // clear all the table rows
+            FindReservationByDate findReservationByDate;
 
-        if (!dateField.getText().equals("")) {
-            searchDate = dateField.getText();
+            reservationsTable.getItems().clear(); // clear all the table rows
 
-            Connection connection = null;
+            if (!dateField.getText().equals("")) {
+                searchDate = dateField.getText();
 
-            //reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
+                Connection connection = null;
+
+                //reservationID.setCellValueFactory(new PropertyValueFactory<>("Rid"));
 
 //            date.setCellValueFactory(new PropertyValueFactory<>("Day"));
 //            tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
@@ -224,54 +228,55 @@ public class ReservationsController implements Initializable {
 //            phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 
 
-            //customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
+                //customerID.setCellValueFactory(new PropertyValueFactory<>("Cid"));
 
-            // ####################### ##########################
+                // ####################### ##########################
 //            tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
 //            tableClass.setCellValueFactory(new PropertyValueFactory<>("Vip"));
 //            capacity.setCellValueFactory(new PropertyValueFactory<>("Capacity"));
 
-            date.setCellValueFactory(new PropertyValueFactory<>("Day"));
-            tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
-            customer.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+                date.setCellValueFactory(new PropertyValueFactory<>("Day"));
+                tableID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+                customer.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 
-            try {
-                System.out.println("Trying to connect to database...");
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-                System.out.println("Connected to database");
+                try {
+                    System.out.println("Trying to connect to database...");
+                    connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+                    System.out.println("Connected to database");
 
-                try (CallableStatement stmt = connection.prepareCall(callFindReservationsByDate)) {
-                    stmt.setString(1, searchDate);
-                    stmt.registerOutParameter(2, OracleTypes.CURSOR);
-                    stmt.executeQuery();
+                    try (CallableStatement stmt = connection.prepareCall(callFindReservationsByDate)) {
+                        stmt.setString(1, searchDate);
+                        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+                        stmt.executeQuery();
 
-                    ResultSet rs = (ResultSet) stmt.getObject(2);
+                        ResultSet rs = (ResultSet) stmt.getObject(2);
 
-                    while (rs.next()) {
+                        while (rs.next()) {
 //                        System.out.println(rs.getInt(1));
 //                        r_id = rs.getInt(1);
 
-                        System.out.println(rs.getString(1));
-                        day = rs.getString(1);
+                            System.out.println(rs.getString(1));
+                            day = rs.getString(1);
 
-                        System.out.println(rs.getInt(2));
-                        t_id = rs.getInt(2);
+                            System.out.println(rs.getInt(2));
+                            t_id = rs.getInt(2);
 
-                        System.out.println(rs.getString(3));
-                        c_name = rs.getString(3);
+                            System.out.println(rs.getString(3));
+                            c_name = rs.getString(3);
 
-                        System.out.println(rs.getString(4));
-                        c_phone = rs.getString(4);
+                            System.out.println(rs.getString(4));
+                            c_phone = rs.getString(4);
 
-                        findReservationByDate = new FindReservationByDate(day, t_id, c_name, c_phone);
-                        reservationsTable.getItems().add(findReservationByDate);
+                            findReservationByDate = new FindReservationByDate(day, t_id, c_name, c_phone);
+                            reservationsTable.getItems().add(findReservationByDate);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }

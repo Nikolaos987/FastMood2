@@ -52,49 +52,54 @@ public class StaffHistoryController implements Initializable {
 
 
     public void showHistory(ActionEvent event) throws IOException {
-        StaffHistory staffHistory;
+        if (staffIDText.getText().equals("")) {
+            resetTable(new ActionEvent());
+        } else {
 
-        staffHistoryTable.getItems().clear(); // clear all the rows from the TableView
+            StaffHistory staffHistory;
 
-        if (!staffIDText.getText().equals("")) {
-            s_id = Integer.parseInt(staffIDText.getText());
+            staffHistoryTable.getItems().clear(); // clear all the rows from the TableView
 
-            Connection connection = null;
+            if (!staffIDText.getText().equals("")) {
+                s_id = Integer.parseInt(staffIDText.getText());
 
-            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
-            times.setCellValueFactory(new PropertyValueFactory<>("Count"));
+                Connection connection = null;
 
-            try {
-                System.out.println("Trying to connect to database...");
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-                System.out.println("Connected to database");
+                name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+                times.setCellValueFactory(new PropertyValueFactory<>("Count"));
 
-                try (CallableStatement stmt = connection.prepareCall(callStaffHistory)) {
-                    stmt.setInt(1, s_id);
-                    stmt.registerOutParameter(2, OracleTypes.CURSOR);
-                    stmt.executeQuery();
+                try {
+                    System.out.println("Trying to connect to database...");
+                    connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+                    System.out.println("Connected to database");
 
-                    ResultSet rs = (ResultSet) stmt.getObject(2);
+                    try (CallableStatement stmt = connection.prepareCall(callStaffHistory)) {
+                        stmt.setInt(1, s_id);
+                        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+                        stmt.executeQuery();
 
-                    while (rs.next()) {
-                        System.out.println(rs.getString(1));
-                        fullname = rs.getString(1);
+                        ResultSet rs = (ResultSet) stmt.getObject(2);
 
-                        System.out.println(rs.getInt(2));
-                        tid = rs.getInt(2);
+                        while (rs.next()) {
+                            System.out.println(rs.getString(1));
+                            fullname = rs.getString(1);
 
-                        System.out.println(rs.getInt(3));
-                        count = rs.getInt(3);
+                            System.out.println(rs.getInt(2));
+                            tid = rs.getInt(2);
 
-                        staffHistory = new StaffHistory(fullname, tid, count);
-                        staffHistoryTable.getItems().add(staffHistory);
+                            System.out.println(rs.getInt(3));
+                            count = rs.getInt(3);
+
+                            staffHistory = new StaffHistory(fullname, tid, count);
+                            staffHistoryTable.getItems().add(staffHistory);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }

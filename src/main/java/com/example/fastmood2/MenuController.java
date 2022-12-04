@@ -61,55 +61,62 @@ public class MenuController implements Initializable {
     public String callDishDetails = "{CALL DishDetails(?,?)}";
 
 
+
+
     public void searchPrice(ActionEvent event) throws IOException {
-        PriceFilter priceFilter;
+        if (priceField.getText().equals("")) {
+            resetTable(new ActionEvent());
+        } else {
 
-        menuTable.getItems().clear(); // clear all the rows from the TableView
+            PriceFilter priceFilter;
 
-        Connection connection = null;
+            menuTable.getItems().clear(); // clear all the rows from the TableView
 
-        if (!priceField.getText().equals("")) {
-            filterPrice = Float.parseFloat(priceField.getText());
+            Connection connection = null;
 
-            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            price.setCellValueFactory(new PropertyValueFactory<>("Cost"));
+            if (!priceField.getText().equals("")) {
+                filterPrice = Float.parseFloat(priceField.getText());
 
-            try {
-                System.out.println("Trying to connect to database...");
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-                System.out.println("Connected to database");
+                name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                description.setCellValueFactory(new PropertyValueFactory<>("Description"));
+                price.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-                try (CallableStatement stmt = connection.prepareCall(callPRICEFILTER)) {
-                    stmt.setFloat(1, filterPrice);
-                    stmt.registerOutParameter(2, OracleTypes.CURSOR);
-                    stmt.executeQuery();
+                try {
+                    System.out.println("Trying to connect to database...");
+                    connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+                    System.out.println("Connected to database");
 
-                    ResultSet rs = (ResultSet) stmt.getObject(2);
+                    try (CallableStatement stmt = connection.prepareCall(callPRICEFILTER)) {
+                        stmt.setFloat(1, filterPrice);
+                        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+                        stmt.executeQuery();
 
-                    while (rs.next()) {
-                        System.out.println(rs.getString(1));
-                        xname = rs.getString(1);
+                        ResultSet rs = (ResultSet) stmt.getObject(2);
 
-                        System.out.println(rs.getString(2));
-                        xdescription = rs.getString(2);
+                        while (rs.next()) {
+                            System.out.println(rs.getString(1));
+                            xname = rs.getString(1);
 
-                        System.out.println(rs.getFloat(3));
-                        xprice = rs.getFloat(3);
+                            System.out.println(rs.getString(2));
+                            xdescription = rs.getString(2);
+
+                            System.out.println(rs.getFloat(3));
+                            xprice = rs.getFloat(3);
 //                    if (table_vip.equals("Y")) {
 //                        table_vip = "VIP";
 //                    } else {
 //                        table_vip = "REGULAR";
 //                    }
 
-                        priceFilter = new PriceFilter(xname, xdescription, xprice);
-                        menuTable.getItems().add(priceFilter);
+                            priceFilter = new PriceFilter(xname, xdescription, xprice);
+                            menuTable.getItems().add(priceFilter);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }
@@ -119,56 +126,62 @@ public class MenuController implements Initializable {
 
 
     public void searchDish(ActionEvent event) throws IOException {
-        PriceFilter priceFilter;
+        if (dishField.getText().equals("")) {
+            resetTable(new ActionEvent());
+        } else {
 
-        menuTable.getItems().clear(); // clear all the rows from the TableView
+            PriceFilter priceFilter;
 
-        Connection connection = null;
+            menuTable.getItems().clear(); // clear all the rows from the TableView
 
-        if (!dishField.getText().equals("")) {
-            filterName = dishField.getText();
+            Connection connection = null;
 
-            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            price.setCellValueFactory(new PropertyValueFactory<>("Cost"));
+            if (!dishField.getText().equals("")) {
+                filterName = dishField.getText();
 
-            try {
-                System.out.println("Trying to connect to database...");
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-                System.out.println("Connected to database");
+                name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                description.setCellValueFactory(new PropertyValueFactory<>("Description"));
+                price.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-                try (CallableStatement stmt = connection.prepareCall(callDishDetails)) {
-                    stmt.setString(1, filterName);
-                    stmt.registerOutParameter(2, OracleTypes.CURSOR);
-                    stmt.executeQuery();
+                try {
+                    System.out.println("Trying to connect to database...");
+                    connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+                    System.out.println("Connected to database");
 
-                    ResultSet rs = (ResultSet) stmt.getObject(2);
+                    try (CallableStatement stmt = connection.prepareCall(callDishDetails)) {
+                        stmt.setString(1, filterName);
+                        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+                        stmt.executeQuery();
 
-                    while (rs.next()) {
-                        System.out.println(rs.getString(1));
-                        xname = rs.getString(1);
+                        ResultSet rs = (ResultSet) stmt.getObject(2);
 
-                        System.out.println(rs.getString(2));
-                        xdescription = rs.getString(2);
+                        while (rs.next()) {
+                            System.out.println(rs.getString(1));
+                            xname = rs.getString(1);
 
-                        System.out.println(rs.getFloat(3));
-                        xprice = rs.getFloat(3);
+                            System.out.println(rs.getString(2));
+                            xdescription = rs.getString(2);
+
+                            System.out.println(rs.getFloat(3));
+                            xprice = rs.getFloat(3);
 //                    if (table_vip.equals("Y")) {
 //                        table_vip = "VIP";
 //                    } else {
 //                        table_vip = "REGULAR";
 //                    }
 
-                        priceFilter = new PriceFilter(xname, xdescription, xprice);
-                        menuTable.getItems().add(priceFilter);
+                            priceFilter = new PriceFilter(xname, xdescription, xprice);
+                            menuTable.getItems().add(priceFilter);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
+
     }
 
 
@@ -193,12 +206,62 @@ public class MenuController implements Initializable {
         stage.show();
     }
 
+    public void resetTable(ActionEvent event) {
+        PriceFilter priceFilter;
+
+        menuTable.getItems().clear(); // clear all the rows from the TableView
+
+        Connection connection = null;
+
+        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        price.setCellValueFactory(new PropertyValueFactory<>("Cost"));
+
+        try {
+            System.out.println("Trying to connect to database...");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+            System.out.println("Connected to database");
+
+            try (CallableStatement stmt = connection.prepareCall(callShowMenu)) {
+                stmt.registerOutParameter(1, OracleTypes.CURSOR);
+                stmt.executeQuery();
+
+                ResultSet rs = (ResultSet) stmt.getObject(1);
+
+                while (rs.next()) {
+                    System.out.println(rs.getString(1));
+                    xname = rs.getString(1);
+
+                    System.out.println(rs.getString(2));
+                    xdescription = rs.getString(2);
+
+                    System.out.println(rs.getFloat(3));
+                    xprice = rs.getFloat(3);
+//                    if (table_vip.equals("Y")) {
+//                        table_vip = "VIP";
+//                    } else {
+//                        table_vip = "REGULAR";
+//                    }
+
+                    priceFilter = new PriceFilter(xname, xdescription, xprice);
+                    menuTable.getItems().add(priceFilter);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (!User.getIsStaff()) {
             createDishButton.setDisable(true);
             createDishButton.setVisible(false);
         }
+
+
 
         PriceFilter priceFilter;
 

@@ -31,7 +31,7 @@
             </Button>
             <Button fx:id="searchButton" layoutX="360.0" layoutY="340.0" mnemonicParsing="false" onAction="#filterOrders" text="O-" />
             <TextField fx:id="o_idField" layoutX="210.0" layoutY="340.0" promptText="Filter by Order ID" />
-            <Button fx:id="resetButton" layoutX="511.0" layoutY="340.0" mnemonicParsing="false" onAction="#resetTable" style="-fx-background-color: #90EE90;" text="RESET">
+            <Button fx:id="resetButton" layoutX="511.0" layoutY="340.0" mnemonicParsing="false" onAction="#resetTable" text="RESET">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

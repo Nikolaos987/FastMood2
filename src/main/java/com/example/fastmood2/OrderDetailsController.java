@@ -119,52 +119,57 @@ public class OrderDetailsController implements Initializable {
     }
 
     public void filterOrders(ActionEvent event) throws IOException {
-        Connection connection = null;
+        if (o_idField.getText().equals("")) {
+            resetTable(new ActionEvent());
+        } else {
 
-        if (!o_idField.getText().equals("")) {
-            tidField = Integer.parseInt(o_idField.getText());
+            Connection connection = null;
 
-            OrderDetails orderDetails;
+            if (!o_idField.getText().equals("")) {
+                tidField = Integer.parseInt(o_idField.getText());
 
-            ordersTable.getItems().clear(); // clear all the rows from the TableView
+                OrderDetails orderDetails;
+
+                ordersTable.getItems().clear(); // clear all the rows from the TableView
 
 
-            tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
-            dishName.setCellValueFactory(new PropertyValueFactory<>("Dname"));
-            dishPrice.setCellValueFactory(new PropertyValueFactory<>("Dprice"));
-            servedBy.setCellValueFactory(new PropertyValueFactory<>("Osid"));
+                tableNumber.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+                dishName.setCellValueFactory(new PropertyValueFactory<>("Dname"));
+                dishPrice.setCellValueFactory(new PropertyValueFactory<>("Dprice"));
+                servedBy.setCellValueFactory(new PropertyValueFactory<>("Osid"));
 
-            try {
-                System.out.println("Trying to connect to database...");
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
-                System.out.println("Connected to database");
+                try {
+                    System.out.println("Trying to connect to database...");
+                    connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "it185351", "Oreoskodikos_33");
+                    System.out.println("Connected to database");
 
-                try (CallableStatement stmt = connection.prepareCall(callOrderDetails)) {
-                    stmt.setInt(1, tidField);
-                    stmt.registerOutParameter(2, OracleTypes.CURSOR);
-                    stmt.executeQuery();
+                    try (CallableStatement stmt = connection.prepareCall(callOrderDetails)) {
+                        stmt.setInt(1, tidField);
+                        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+                        stmt.executeQuery();
 
-                    ResultSet rs = (ResultSet) stmt.getObject(2);
+                        ResultSet rs = (ResultSet) stmt.getObject(2);
 
-                    while (rs.next()) {
-                        System.out.println(rs.getInt(1));
-                        tid = rs.getInt(1);
+                        while (rs.next()) {
+                            System.out.println(rs.getInt(1));
+                            tid = rs.getInt(1);
 
-                        System.out.println(rs.getString(2));
-                        dname = rs.getString(2);
+                            System.out.println(rs.getString(2));
+                            dname = rs.getString(2);
 
-                        System.out.println(rs.getFloat(3));
-                        dprice = rs.getFloat(3);
+                            System.out.println(rs.getFloat(3));
+                            dprice = rs.getFloat(3);
 
-                        System.out.println(rs.getString(4));
-                        osid = rs.getString(4);
+                            System.out.println(rs.getString(4));
+                            osid = rs.getString(4);
 
-                        orderDetails = new OrderDetails(tid, dname, dprice, osid);
-                        ordersTable.getItems().add(orderDetails);
+                            orderDetails = new OrderDetails(tid, dname, dprice, osid);
+                            ordersTable.getItems().add(orderDetails);
+                        }
                     }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         }
     }
